@@ -1,72 +1,46 @@
 # ViBe
 
-ViBe is an innovative educational platform that enhances learning through continuous assessment and interactive challenges. Designed to ensure that every student fully masters the material before progressing, ViBe uses smart question generation and adaptive reviews to reinforce understanding and foster deeper learning.
-
-[![Watch the video](https://img.youtube.com/vi/Qc0FY260A98/maxresdefault.jpg)](https://youtu.be/Qc0FY260A98)
-
-### [Click here to Watch](https://youtu.be/Qc0FY260A98)
-
-## Key Features
-
-- **Active Learning Through Adaptive Challenges:**  
-  ViBe continuously assesses student comprehension and prompts a review of the material when needed, ensuring robust mastery before advancement.
-
-- **AI-Enhanced Question Generation:**  
-  Advanced algorithms generate contextually relevant questions that are both challenging and informative, helping to solidify knowledge.
-
-- **Secure and Integrity-Assured Assessments:**  
-  ViBe incorporates positive, AI-driven monitoring features that promote a fair and secure testing environment. These integrity safeguards include:
-  - **Smart Proctoring:** AI-powered monitoring ensures that assessments are conducted honestly, providing a supportive framework that maintains academic integrity.
-  - **Engagement Verification:** The system checks that students are actively engaged, reinforcing a positive learning atmosphere.
-
-## Inspiration
-
-ViBe draws inspiration from the classical Indian tale of Vikram and Betaal. In the story, Betaal challenges King Vikramaditya with riddles, and any incorrect answer prompts a review of the challenge. Similarly, ViBe reinforces learning by requiring students to revisit content if their responses do not meet the mark, ensuring a deep and lasting understanding of the material.
-
-## Quick Start
-
-For detailed setup instructions and comprehensive guides for both developers and end users, please refer to our [Documentation(In Progress)](https://continuousactivelearning.github.io/vibe/).
-
-## License
-
-ViBe is licensed under the [MIT License](LICENSE).
-
-## Feedback and Contributions
-
-We welcome your feedback, contributions, and suggestions. Please:
-
-- **Report Issues:** Open an issue on the repository.
-- **Contribute:** Fork the repository, create a feature branch, and submit a pull request.
-- **Contact:** Reach out to us at [dled@iitrpr.ac.in](mailto:dled@iitrpr.ac.in).
+ViBe is a full-stack learning platform built with a React/Vite frontend and a Node.js/Express backend. This guide explains how to set up the project for local development.
 
 ---
 
-Explore our [Documentation](https://vicharanashala.github.io/vibe/) for further details on usage, setup, and development.
+# Tech Stack
 
-# PRJ
-# ViBe – Local Development Setup
+### Frontend
 
-This guide walks you through setting up the ViBe project for local development.
+* React
+* TypeScript
+* Vite
+* Tailwind CSS
+* Firebase Authentication
+
+### Backend
+
+* Node.js
+* Express
+* TypeScript
+* MongoDB
+* Firebase Admin SDK
 
 ---
 
-## Prerequisites
+# Prerequisites
 
-Before you begin, ensure you have the following installed:
+Install the following before starting:
 
-* Node.js (v20+ recommended)
+* Node.js (v20 or later recommended)
 * pnpm
-* MongoDB (local or MongoDB Atlas)
 * Git
-* Firebase CLI (optional, for Firebase emulators)
+* MongoDB (local or Atlas)
+* Firebase project (or access to the team's Firebase project)
 
-Install pnpm globally:
+Install pnpm:
 
 ```bash
 npm install -g pnpm
 ```
 
-Verify installation:
+Verify:
 
 ```bash
 pnpm -v
@@ -74,25 +48,25 @@ pnpm -v
 
 ---
 
-# Clone the repository
+# Clone the Repository
 
 ```bash
-git clone <repository-url>
-cd vibe
+git clone https://github.com/Adityag0537/PRJ.git
+cd PRJ
 ```
 
 ---
 
-# Install dependencies
+# Install Dependencies
 
-### Backend
+Install backend dependencies:
 
 ```bash
 cd backend
 pnpm install
 ```
 
-### Frontend
+Install frontend dependencies:
 
 ```bash
 cd ../frontend
@@ -101,31 +75,25 @@ pnpm install
 
 ---
 
-# Backend Environment Setup
+# Environment Configuration
 
-Create a `.env` file inside the `backend` directory.
+The repository contains example environment files.
+
+## Backend
 
 ```bash
+cd backend
 cp .example.env .env
 ```
 
-Update the required values.
+Fill in the required values:
 
-### Required
+```env
+APP_MODULE=all
 
-* `APP_MODULE=all`
-* `DB_URL`
-* `DB_NAME`
+DB_URL=
+DB_NAME=
 
-### Firebase (Development)
-
-The backend uses Firebase Admin SDK.
-
-Create a Firebase project and generate a Service Account key.
-
-Add the following variables:
-
-```
 FIREBASE_PROJECT_ID=
 FIREBASE_CLIENT_EMAIL=
 FIREBASE_PRIVATE_KEY=
@@ -133,11 +101,19 @@ FIREBASE_PRIVATE_KEY=
 
 ---
 
-# Frontend Environment Setup
+## Frontend
 
-Create a `.env` file inside the `frontend` directory.
+Create:
 
+```text
+frontend/.env
 ```
+
+using the provided `.env.example`.
+
+Required variables:
+
+```env
 VITE_BASE_URL=http://localhost:3141/api
 
 VITE_FIREBASE_API_KEY=
@@ -153,148 +129,131 @@ VITE_RECAPTCHA_SITE_KEY=
 VITE_E2E_TESTING=false
 ```
 
-These values are available from **Firebase Console → Project Settings → General → Your Apps**.
+---
+
+# Firebase Setup
+
+The project requires Firebase Authentication.
+
+If your team has an existing Firebase project, use the credentials provided by the maintainers.
+
+Otherwise:
+
+1. Create a Firebase project.
+2. Enable **Authentication**.
+3. Enable:
+
+   * Email/Password
+   * Google
+4. Register a Web App.
+5. Copy the Firebase Web configuration into `frontend/.env`.
+6. Generate a Firebase Service Account and configure the backend `.env`.
 
 ---
 
 # MongoDB
 
-You can use either:
+Use either a local MongoDB instance:
 
-## Local MongoDB
-
-```
+```env
 DB_URL=mongodb://localhost:27017
 DB_NAME=vibe
 ```
 
-or
+or MongoDB Atlas:
 
-## MongoDB Atlas
-
-```
+```env
 DB_URL=mongodb+srv://<username>:<password>@cluster.mongodb.net
 DB_NAME=vibe
 ```
 
 ---
 
-# Running the Backend
+# Running the Application
+
+### Backend
 
 ```bash
 cd backend
 pnpm start
 ```
 
-The backend will start at
+The backend runs at:
 
-```
+```text
 http://localhost:3141
 ```
 
-API documentation is available at
+Interactive API documentation:
 
-```
+```text
 http://localhost:3141/reference
 ```
 
----
-
-# Running the Frontend
+### Frontend
 
 ```bash
 cd frontend
 pnpm dev
 ```
 
-The frontend is usually available at
+The frontend runs at:
 
-```
+```text
 http://localhost:5173
 ```
 
 ---
 
-# Firebase Setup
+# Troubleshooting
 
-## Frontend
+### `FirebaseError: auth/invalid-api-key`
 
-Create a Firebase project.
+The frontend Firebase configuration is missing or invalid.
 
-Enable:
-
-* Authentication
-
-  * Email/Password
-  * Google
-
-Register a Web App and copy the Firebase configuration into `frontend/.env`.
-
-## Backend
-
-Generate a Firebase Service Account:
-
-Firebase Console
-
-→ Project Settings
-
-→ Service Accounts
-
-→ Generate New Private Key
-
-Copy the values into `backend/.env`.
+Verify the values in `frontend/.env`.
 
 ---
 
-# Common Issues
+### `Container not initialized`
 
-## Firebase: auth/invalid-api-key
+Ensure the backend environment contains:
 
-The frontend `.env` is missing or contains invalid Firebase configuration.
-
----
-
-## Container not initialized
-
-Ensure:
-
-```
+```env
 APP_MODULE=all
 ```
 
-is set inside the backend `.env`.
-
 ---
 
-## MongoDB connection failed
+### MongoDB connection failed
 
 Verify:
 
-* MongoDB is running
-* `DB_URL`
-* `DB_NAME`
+* MongoDB is running.
+* `DB_URL` is correct.
+* `DB_NAME` exists.
 
 ---
 
-## White screen after running frontend
+### White screen on startup
 
 Open the browser Developer Console (F12).
 
-Most commonly this is caused by missing Firebase environment variables.
+A common cause is missing or invalid Firebase environment variables.
 
 ---
 
-## Dependency installation issues
+### Dependency installation fails
 
-Always use **pnpm**, not npm.
+This project uses **pnpm**.
 
-Install dependencies with
+Use:
 
 ```bash
 pnpm install
 ```
 
-instead of
+instead of:
 
 ```bash
 npm install
@@ -302,20 +261,12 @@ npm install
 
 ---
 
-# Development Notes
-
-* The backend uses Firebase Admin SDK.
-* The frontend uses Firebase Authentication.
-* MongoDB must be configured before starting the backend.
-* Some background jobs expect existing database data. When running with an empty database, these jobs may need to be disabled during development.
-
----
-
 # Contributing
 
-1. Create a feature branch.
-2. Make your changes.
-3. Run the application locally.
-4. Ensure both frontend and backend start successfully.
+1. Fork the repository.
+2. Create a feature branch.
+3. Make your changes.
+4. Verify both backend and frontend run successfully.
 5. Submit a Pull Request.
 
+Contributions that improve documentation, fix bugs, or add features are welcome.
